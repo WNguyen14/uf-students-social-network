@@ -1,3 +1,10 @@
+# UF Students Social Network Project
+
+William Nguyen, Matthew Kopelowitz, Sahil Daswani, Xiaowei Jiang
+
+Below is auto-generated documentation
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

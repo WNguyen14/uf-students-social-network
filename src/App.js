@@ -13,6 +13,7 @@ import Search from "./components/search.jsx";
 import { createTheme } from "@mui/material/styles";
 import { ThemeProvider } from "@emotion/react";
 import CssBaseline from "@mui/material/CssBaseline";
+import { typography } from "@mui/system";
 const theme = createTheme({
   palette: {
     background: {
@@ -34,6 +35,7 @@ export default function SearchAppBar() {
       <Box
         sx={{
           flexGrow: 1,
+          paddingBottom: 7,
         }}
       >
         <AppBar position="static">
@@ -59,6 +61,9 @@ export default function SearchAppBar() {
           </Toolbar>
         </AppBar>
       </Box>
+      <Typography variant="h3" align="center" color="#ffffff">
+        Find UF students by common interests, majors, and hobbies
+      </Typography>
     </ThemeProvider>
   );
 }

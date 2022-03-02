@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/uf-students-social-network/static/css/main.e6c13ad2.css",
+    "main.js": "/uf-students-social-network/static/js/main.806e4976.js",
+    "static/js/787.72260994.chunk.js": "/uf-students-social-network/static/js/787.72260994.chunk.js",
+    "index.html": "/uf-students-social-network/index.html",
+    "main.e6c13ad2.css.map": "/uf-students-social-network/static/css/main.e6c13ad2.css.map",
+    "main.806e4976.js.map": "/uf-students-social-network/static/js/main.806e4976.js.map",
+    "787.72260994.chunk.js.map": "/uf-students-social-network/static/js/787.72260994.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.806e4976.js"
+  ]
+}

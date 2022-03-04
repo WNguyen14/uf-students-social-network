@@ -12,13 +12,15 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { signup } from '../firebase';
+import { useState } from 'react';
 
 const theme = createTheme();
 
-
-
-
 export default function SignUp() {
+  const [emailErr, setEmailErr] = useState('');
+  const [passwordErr, setPasswordErr] = useState('');
+  const [password2Err, setPassword2Err] = useState('');
+
   function validateEmail(email) {
     //check if email domain is uf.edu
     const domain = email.split('@')[1];
@@ -44,6 +46,18 @@ export default function SignUp() {
     return false;
   }
 
+  const onEmailChange = () => {
+    setEmailErr('');
+  }
+
+  const onPasswordChange = () => {
+    setPasswordErr('');
+  }
+
+  const onPassword2Change = () => {
+    setPassword2Err('');
+  }
+
   async function handleSubmit(event){
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -62,11 +76,18 @@ export default function SignUp() {
       catch {
         alert('Error signing up');
       }
+  
     }
     else{
-      console.log(validateEmail(info.email));
-      console.log(validatePassword(info.password, info.confirmPassword));
-      console.log('invalid email or password');
+      if (!validateEmail(info.email)) {
+        setEmailErr('Invalid UF Email');
+      }
+      if (!validatePassword(info.password, info.confirmPassword)) {
+        setPasswordErr('Must be at least 8 characters and have at least 1 number');
+      }
+      if (!matchPassword(info.password, info.confirmPassword)) {
+        setPassword2Err('Passwords do not match');
+      }
     }
   };
 
@@ -90,6 +111,7 @@ export default function SignUp() {
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
+              onChange={onEmailChange}
               margin="normal"
               required
               fullWidth
@@ -98,9 +120,12 @@ export default function SignUp() {
               name="email"
               autoComplete="email"
               autoFocus
+              error = {emailErr !== ''}
+              helperText={emailErr}
             />
 
             <TextField
+              onChange={onPasswordChange}
               margin="normal"
               required
               fullWidth
@@ -109,9 +134,12 @@ export default function SignUp() {
               type="password"
               id="password"
               autoComplete="current-password"
+              helperText={passwordErr}
+              error = {passwordErr !== ''}
             />
 
             <TextField
+              onChange={onPassword2Change}
               margin="normal"
               required
               fullWidth
@@ -120,6 +148,8 @@ export default function SignUp() {
               type="password"
               id="cpassword"
               autoComplete="current-password"
+              helperText={password2Err}
+              error = {password2Err !== ''}
             />
 
             <FormControlLabel

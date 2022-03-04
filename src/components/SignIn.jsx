@@ -12,18 +12,24 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
+import { login } from '../firebase';
 const theme = createTheme();
 
 export default function SignIn() {
-  const handleSubmit = (event) => {
+  async function handleSubmit(event) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     // eslint-disable-next-line no-console
-    console.log({
+    const info = {
       email: data.get('email'),
       password: data.get('password'),
-    });
+    };
+    try {
+      await login(info.email, info.password);
+    }
+    catch {
+      alert('Error signing in');
+    }
   };
 
   return (

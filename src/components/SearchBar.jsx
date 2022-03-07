@@ -27,6 +27,8 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
+import LogoutIcon from '@mui/icons-material/Logout';
+import Postboard from './Postboard/Postboard'
 const SearchBar = () => {
   async function handleLogout() {
     try {
@@ -133,6 +135,8 @@ const SearchBar = () => {
           </Box>
         </Box>
       </ThemeProvider>
+      <LogoutIcon onClick={handleLogout} style={{ color:'white'  }} >Sign Out</LogoutIcon>
+      <Postboard />
     </>
   );
 };

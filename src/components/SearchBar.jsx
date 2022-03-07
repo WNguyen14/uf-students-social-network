@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -12,8 +12,12 @@ import SearchIcon from "@mui/icons-material/Search";
 import Search from "./Search.jsx";
 import { ThemeProvider } from "@emotion/react";
 import CssBaseline from "@mui/material/CssBaseline";
-import {theme} from "../Data/theme";
-import { logout } from '../firebase';
+import { theme } from "../Data/theme";
+import { logout } from "../firebase";
+import MenuItem from "@mui/material/MenuItem";
+
+import Menu from "@mui/material/Menu";
+const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const SearchBar = () => {
   async function handleLogout() {
@@ -23,6 +27,24 @@ const SearchBar = () => {
       alert("Error!");
     }
   }
+
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
 
   return (
     <>
@@ -50,16 +72,44 @@ const SearchBar = () => {
                 aria-label="account of current user"
                 aria-haspopup="true"
                 color="inherit"
+                onClick={handleOpenUserMenu}
               >
                 <AccountCircle />
               </IconButton>
+              <Box sx={{ flexGrow: 0 }}>
+                <IconButton
+                  onClick={handleOpenUserMenu}
+                  sx={{ p: 0 }}
+                ></IconButton>
+                <Menu
+                  sx={{ mt: "45px" }}
+                  id="menu-appbar"
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUserMenu}
+                >
+                  <MenuItem onClick={handleLogout}>
+                    <Typography textAlign="center" color="textSecondary">
+                      Sign Out
+                    </Typography>
+                  </MenuItem>
+                </Menu>
+              </Box>
             </Toolbar>
           </AppBar>
         </Box>
       </ThemeProvider>
-      <button onClick={handleLogout}>Sign Out</button>
     </>
   );
-}
+};
 
 export default SearchBar;

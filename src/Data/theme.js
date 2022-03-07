@@ -1,13 +1,6 @@
 import { createTheme } from "@mui/material/styles";
 
 export const theme = createTheme({
-  root: {
-    "& .MuiOutlinedInput-root": {
-      "& fieldset": {
-        borderColor: "red",
-      },
-    },
-  },
   palette: {
     background: {
       default: "#222222",

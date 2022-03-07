@@ -1,3 +1,4 @@
+
 import React, { useRef, useState } from 'react';
 import Stack from '@mui/material/Stack';
 import Avatar from '@mui/material/Avatar';
@@ -22,24 +23,24 @@ import Cards from './Card';
 
 const theme = createTheme();
 
-const CreateProfile = ({handleCreateProfile}) => {
+const CreateProfile = ({ handleCreateProfile }) => {
   const majorInput = useRef(null);
   const coursesInput = useRef(null);
   const interestsInput = useRef(null);
 
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [majors, setMajors] = useState([]);
   const [courses, setCourses] = useState([]);
   const [interests, setInterests] = useState([]);
 
   const onFirstNameChange = (e) => {
     setFirstName(e.target.value);
-  }
+  };
 
   const onLastNameChange = (e) => {
     setLastName(e.target.value);
-  }
+  };
 
   const validateMajor = () => {
     return majors.length > 0;
@@ -54,6 +55,7 @@ const CreateProfile = ({handleCreateProfile}) => {
   }
 
   const addMajor = () => {
+
     if (majorInput.current.value !== '' && !majors.includes(majorInput.current.value)) {
       setMajors([...majors, majorInput.current.value]);
       majorInput.current.value = '';

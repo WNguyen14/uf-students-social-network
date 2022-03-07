@@ -66,14 +66,14 @@ const Search = () => {
               {children}
             </Paper>
           )}
-          style={{ width: 500 }}
+          style={{ width: 300 }}
           renderInput={(params) => (
             <StyledInputBase
               ref={params.InputProps.ref}
               inputProps={params.inputProps}
               autoFocus
               {...params}
-              placeholder="Search for interests/majors/hobbies"
+              placeholder="Search for majors"
             />
           )}
         />

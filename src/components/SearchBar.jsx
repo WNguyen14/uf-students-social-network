@@ -13,8 +13,9 @@ import Search from "./Search.jsx";
 import { ThemeProvider } from "@emotion/react";
 import CssBaseline from "@mui/material/CssBaseline";
 import {theme} from "../Data/theme";
+import LogoutIcon from '@mui/icons-material/Logout';
 import { logout } from '../firebase';
-
+import Postboard from './Postboard/Postboard'
 const SearchBar = () => {
   async function handleLogout() {
     try {
@@ -57,7 +58,8 @@ const SearchBar = () => {
           </AppBar>
         </Box>
       </ThemeProvider>
-      <button onClick={handleLogout}>Sign Out</button>
+      <LogoutIcon onClick={handleLogout} style={{ color:'white'  }} >Sign Out</LogoutIcon>
+      <Postboard />
     </>
   );
 }

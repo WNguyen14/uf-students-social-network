@@ -10,13 +10,21 @@ import InputBase from "@mui/material/InputBase";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import Search from "./Search.jsx";
+import MajorSearch from "./MajorSearch.jsx";
 import { ThemeProvider } from "@emotion/react";
 import CssBaseline from "@mui/material/CssBaseline";
 import { theme } from "../Data/theme";
 import { logout } from "../firebase";
 import MenuItem from "@mui/material/MenuItem";
-
+import Paper from "@mui/material/Paper";
+import { spacing } from "@mui/system";
+import Grid from "@mui/material/Grid";
 import Menu from "@mui/material/Menu";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const SearchBar = () => {
@@ -51,6 +59,7 @@ const SearchBar = () => {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Box
+          display="flex"
           sx={{
             flexGrow: 1,
           }}
@@ -106,6 +115,22 @@ const SearchBar = () => {
               </Box>
             </Toolbar>
           </AppBar>
+        </Box>
+        <Box display="flex" justifyContent="center" alignItems="center">
+          <MajorSearch />
+          <MajorSearch />
+          <MajorSearch />
+          <Box>
+            <List>
+              {settings.map((setting) => {
+                return (
+                  <ListItem>
+                    <ListItemText primary={setting} />
+                  </ListItem>
+                );
+              })}
+            </List>
+          </Box>
         </Box>
       </ThemeProvider>
     </>

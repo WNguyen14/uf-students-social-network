@@ -1,7 +1,15 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut} from "firebase/auth";
+import { initializeApp } from 'firebase/compat/app';
+import firebase from 'firebase/compat/app';
+import {
+  getAuth,
+  signOut,
+} from 'firebase/auth';
+import {
+  getFirestore,
+  collection,
+} from 'firebase/firestore';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth";
 const firebaseConfig = {
   apiKey: "AIzaSyBljqnzY3XdsM7YhlLDCHxXDndSCU1oBR0",
   authDomain: "uf-students-social-network.firebaseapp.com",
@@ -13,7 +21,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig)
 
 export const auth = getAuth();
 export const db = getFirestore();
@@ -31,3 +39,4 @@ export function logout() {
 }
 
 
+export default firebase;

@@ -52,7 +52,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const Search = () => {
   return (
-    <Box sx={{ display: { xs: "none", md: "flex" } }}>
+    <Box position="relative" sx={{ display: { xs: "none", md: "flex" } }}>
       <Searching>
         <SearchIconWrapper>
           <SearchIcon />

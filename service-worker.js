@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/uf-students-social-network/precache-manifest.03e093e51faa95aad1b8e3231acfdef0.js"
+  "/uf-students-social-network/precache-manifest.ab92ddd0662f591da83368e0347c5c75.js"
 );
 
 workbox.clientsClaim();

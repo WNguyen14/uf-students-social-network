@@ -2,6 +2,8 @@
 
 William Nguyen, Matthew Kopelowitz, Sahil Daswani, Xiaowei Jiang
 
+Using material UI, install here: https://mui.com/getting-started/installation/
+
 Below is auto-generated documentation
 
 

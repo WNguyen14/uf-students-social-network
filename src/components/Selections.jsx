@@ -33,7 +33,7 @@ function Selections() {
     const data = docSnap.data();
     var name = data.firstName + " " + data.lastName;
     setUserName(name);
-    setUserMajor(data.Majors);
+    setUserMajor(data.majors);
     setUserInterests(data.interests);
     setUserCourses(data.courses);
   }
@@ -64,7 +64,7 @@ function Selections() {
     } else if (__type === "majors"&&majorInput!=="") {
 
         Profile.doc(auth.currentUser.uid).update({
-          Majors: firebase.firestore.FieldValue.arrayUnion(majorInput)
+          majors: firebase.firestore.FieldValue.arrayUnion(majorInput)
         })
         fetchProfile()
         setMajorInput("")

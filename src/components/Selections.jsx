@@ -86,9 +86,11 @@ function Selections() {
         border: 1,
         borderColor: "#FFFFFF",
         p: 4,
+        width: "100%",
         borderRadius: 2,
         height: 850,
       }}
+      justifyContent="center"
     >
       <h1>Profile</h1>
       <Divider />

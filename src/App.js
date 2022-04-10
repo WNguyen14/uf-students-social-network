@@ -2,6 +2,7 @@ import React from "react";
 import SearchBar from "./components/SearchBar";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
+import ChatPage from "./components/ChatPage";
 import CreateProfile from "./components/CreateProfile";
 import {
   BrowserRouter as Router,
@@ -71,6 +72,7 @@ export default function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<SearchBar />} />
+        <Route path="/chat" element={<ChatPage />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route

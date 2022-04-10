@@ -26,7 +26,7 @@ import ListItemText from "@mui/material/ListItemText";
 import Selections from "./Selections.jsx";
 import Postboard from "./Postboard/Postboard";
 import NavBar from "./NavBar.jsx";
-const SearchBar = () => {
+const ChatPage = () => {
   async function handleLogout() {
     try {
       await logout();
@@ -87,8 +87,8 @@ const SearchBar = () => {
             </AppBar>
           </Grid>
           <Grid item xs={4}>
-            {/* <Postboard /> */}
-            <Selections />
+            <Postboard />
+            {/* <Selections /> */}
           </Grid>
         </Grid>
       </ThemeProvider>
@@ -96,4 +96,4 @@ const SearchBar = () => {
   );
 };
 
-export default SearchBar;
+export default ChatPage;

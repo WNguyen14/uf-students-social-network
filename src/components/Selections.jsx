@@ -12,9 +12,19 @@ import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 import FormControl from "@mui/material/FormControl";
 import AddIcon from "@mui/icons-material/Add";
-const Selections = () => {
+import {
+  collection,
+  addDoc,
+  setDoc,
+  onSnapshot,
+} from "firebase/compat/firestore";
+
+function Selections() {
   const auth = getAuth();
   const user = auth.currentUser;
+  useEffect(() => {
+    fetchProfile();
+  }, []);
   async function fetchProfile() {
     const docRef = doc(db, "Profiles", auth.currentUser.uid);
     const docSnap = await getDoc(docRef);
@@ -28,73 +38,46 @@ const Selections = () => {
   const [userName, setUserName] = useState("");
   const [userMajor, setUserMajor] = useState([]);
   const [userCourses, setUserCourses] = useState([]);
-
   const [userInterests, setUserInterests] = useState([]);
+  const [majorInput, setMajorInput] = useState("");
+  const [courseInput, setCourseInput] = useState("");
+  const [interestsInput, setInterestsInput] = useState("");
 
-  const majorInput = useRef(null);
-  const coursesInput = useRef(null);
-  const interestsInput = useRef(null);
+  const Profile = firebase.firestore().collection("Profiles");
 
   const addInfo = (__type) => {
-    if (__type === "interests") {
-      if (
-        interestsInput.current.value !== "" &&
-        !userInterests.includes(interestsInput.current.value)
-      ) {
-        let spacer = " ";
-        let newString = spacer.concat(interestsInput.current.value);
-        setUserInterests([...userInterests, newString]);
-        interestsInput.current.value = "";
-      }
-    } else if (__type === "courses") {
-      if (
-        coursesInput.current.value !== "" &&
-        !userCourses.includes(coursesInput.current.value)
-      ) {
-        let spacer = " ";
-        let newString = spacer.concat(coursesInput.current.value);
-        setUserCourses([...userCourses, newString]);
-        coursesInput.current.value = "";
-      }
-    } else if (__type === "majors") {
-      if (
-        majorInput.current.value !== "" &&
-        !userMajor.includes(majorInput.current.value)
-      ) {
-        let spacer = " ";
-        let newString = spacer.concat(majorInput.current.value);
-        setUserMajor([...userMajor, newString]);
-        majorInput.current.value = "";
-      }
+    if (__type === "interests" && interestsInput !== "") {
+      Profile.doc(auth.currentUser.uid).update({
+        interests: firebase.firestore.FieldValue.arrayUnion(interestsInput),
+      });
+      fetchProfile();
+      setInterestsInput("");
+    } else if (__type === "courses" && courseInput !== "") {
+      Profile.doc(auth.currentUser.uid).update({
+        courses: firebase.firestore.FieldValue.arrayUnion(courseInput),
+      });
+      fetchProfile();
+      setCourseInput("");
+    } else if (__type === "majors" && majorInput !== "") {
+      Profile.doc(auth.currentUser.uid).update({
+        majors: firebase.firestore.FieldValue.arrayUnion(majorInput),
+      });
+      fetchProfile();
+      setMajorInput("");
     }
   };
+
   const handleMajorSubmit = () => {
     addInfo("majors");
-    user.updateProfile({
-      firstName: "newName",
-      interests: userInterests,
-    });
   };
 
   const handleCoursesSubmit = () => {
     addInfo("courses");
-    user.updateProfile({
-      firstName: "newName",
-      interests: userInterests,
-    });
   };
 
   const handleInterestSubmit = () => {
     addInfo("interests");
-    user.updateProfile({
-      firstName: "newName",
-      interests: userInterests,
-    });
   };
-
-  useEffect(() => {
-    fetchProfile();
-  }, []);
 
   return (
     <Box
@@ -113,43 +96,46 @@ const Selections = () => {
       <Divider />
       <h4>Major</h4>
       <FormControl sx={{ mt: 1, width: "100%" }} variant="outlined">
-        <InputLabel htmlFor="outlined-adornment-majors">Add Courses</InputLabel>
+        <InputLabel htmlFor="outlined-adornment-majors">Add Major</InputLabel>
         <OutlinedInput
           id="outlined-adornment-majors"
           type={"text"}
           label="Add Major"
           name="majors"
-          inputRef={majorInput}
+          value={majorInput}
+          onChange={(e) => setMajorInput(e.target.value)}
           endAdornment={
             <InputAdornment position="end">
-              <IconButton onClick={handleMajorSubmit} edge="end">
-                <AddIcon />
+              <IconButton onClick={() => handleMajorSubmit()} edge="end">
+                <AddIcon color="primary" />
               </IconButton>
             </InputAdornment>
           }
         />
       </FormControl>
-      <h6>{userMajor}</h6>
+      <h6>{userMajor && userMajor.join(",")}</h6>
       <Divider />
       <h4>Courses</h4>
       <FormControl sx={{ mt: 1, width: "100%" }} variant="outlined">
         <InputLabel htmlFor="outlined-adornment-majors">Add Courses</InputLabel>
         <OutlinedInput
+          color="secondary"
           id="outlined-adornment-majors"
           type={"text"}
           label="Add Courses"
           name="courses"
-          inputRef={coursesInput}
+          value={courseInput}
+          onChange={(e) => setCourseInput(e.target.value)}
           endAdornment={
             <InputAdornment position="end">
               <IconButton onClick={handleCoursesSubmit} edge="end">
-                <AddIcon />
+                <AddIcon color="primary" />
               </IconButton>
             </InputAdornment>
           }
         />
       </FormControl>
-      <h6>{userCourses}</h6>
+      <h6>{userCourses && userCourses.join(",")}</h6>
       <Divider />
       <h4>Interests</h4>
       <FormControl sx={{ mt: 1, width: "100%" }} variant="outlined">
@@ -161,19 +147,20 @@ const Selections = () => {
           type={"text"}
           label="Add Interest"
           name="interests"
-          inputRef={interestsInput}
+          value={interestsInput}
+          onChange={(e) => setInterestsInput(e.target.value)}
           endAdornment={
             <InputAdornment position="end">
               <IconButton onClick={handleInterestSubmit} edge="end">
-                <AddIcon />
+                <AddIcon color="primary" />
               </IconButton>
             </InputAdornment>
           }
         />
       </FormControl>
-      <h6>{userInterests}</h6>
+      <h6>{userInterests.join(", ")}</h6>
     </Box>
   );
-};
+}
 
 export default Selections;

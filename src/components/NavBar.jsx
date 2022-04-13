@@ -32,10 +32,13 @@ export default function NavBar() {
     switch (text) {
       case "User Profile":
         navigate("/");
+        break;
       case "Chat":
         navigate("/chat");
+        break;
       case "Sign-Out":
         handleLogout();
+        break;
     }
   };
 

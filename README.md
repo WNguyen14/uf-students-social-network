@@ -12,7 +12,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
-First copy the github link
+First, click the green Clone button and then copy the github link
 
 In the project directory, you can run:
 

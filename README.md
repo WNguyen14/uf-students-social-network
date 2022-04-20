@@ -4,6 +4,7 @@ William Nguyen, Matthew Kopelowitz, Sahil Daswani, Xiaowei Jiang
 
 Using material UI, install here: https://mui.com/getting-started/installation/
 
+Also using react-router-dom, install here: https://reactrouter.com/docs/en/v6/getting-started/installation
 
 
 # Getting Started with Create React App

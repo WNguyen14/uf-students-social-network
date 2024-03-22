@@ -5,7 +5,7 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import Typography from "@mui/material/Typography";
-
+import { Link } from "react-router-dom";
 import Search from "./Search.jsx";
 import MajorSearch from "./MajorSearch.jsx";
 import { ThemeProvider } from "@emotion/react";
@@ -71,9 +71,8 @@ const SearchBar = () => {
                 component="div"
                 sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
               >
-                UF Students Social Network
+                EasyTOS MVP
               </Typography>
-              <Search></Search>
               <IconButton
                 size="large"
                 edge="end"
@@ -133,8 +132,11 @@ const SearchBar = () => {
               })}
             </List>
           </Box> */}
-          <Selections />
-          <Postboard />
+          <img src={require("./image.png")} alt="image" />
+
+          <a href="https://docs.google.com/forms/d/1b1nsylwtAQerrd0jgwFRgrAGt6aV2Esj_xjxiq6OLkU/edit">
+            Go to Survey
+          </a>
         </Grid>
       </ThemeProvider>
       {/* <LogoutIcon onClick={handleLogout} style={{ color: "white" }}>
